@@ -3845,7 +3845,7 @@ function kgvid_change_video_icon($icon, $mime, $post_id) {
 	if ( substr($mime, 0, 5) == 'video' ) {
 
 		if ( !empty($post->post_parent) && strpos(get_post_mime_type( $post->post_parent ), 'video') !== false
-		|| get_post_meta($post->ID, '_kgflashmediaplayer-externalurl', true) != false ) {
+		|| (!empty($post->ID) && get_post_meta($post->ID, '_kgflashmediaplayer-externalurl', true) != false )) {
 			$post_id = $post->post_parent; //use post parent if this is a child video or encoded from an external url
 		}
 		$poster_id = get_post_meta($post_id, '_kgflashmediaplayer-poster-id', true);
